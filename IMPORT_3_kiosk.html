@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bảng thiết kế · Kiosk K1–K6</title><style>
+:root{--primary:#0F766E;--primary-d:#115E59;--primary-s:#E6F4F1;--ink:#0F172A;--muted:#475569;--line:#CBD5E1;--bg:#F1F5F9;
+--ok:#166534;--ok-s:#DCFCE7;--warn:#92400E;--warn-s:#FEF3C7;--warn-line:#D97706;--bad:#B91C1C;--bad-s:#FEE2E2;--info:#1E40AF;--info-s:#DBEAFE}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#E2E8F0}
+body{font-family:Inter,'Segoe UI',Roboto,Arial,sans-serif;color:var(--ink);line-height:1.4;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+svg{flex-shrink:0}
+small{display:block;font-weight:500}
+.r{text-align:right}
+.b{font-weight:700}
+.muted{color:var(--muted)}
+.ok{color:var(--ok)}
+.bad{color:var(--bad)}
+
+/* ===== nút ===== */
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 20px;border-radius:14px;
+ border:2px solid var(--primary);background:#fff;color:var(--primary);font-size:18px;font-weight:700;text-align:center}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-support{border:2px dashed var(--warn-line);background:#FFFBEB;color:var(--warn)}
+.btn-ghost{border-color:var(--line);color:var(--ink);background:#fff}
+.btn-dis{border-color:var(--line);color:#64748B;background:#F1F5F9}
+.btn-sm{min-height:44px;font-size:16px;padding:0 16px;border-radius:10px}
+.demo{display:flex;align-items:center;justify-content:center;min-height:44px;border:1.5px dashed #94A3B8;border-radius:10px;
+ color:var(--muted);font-size:16px;font-weight:600;background:#F8FAFC}
+
+/* ===== thành phần dùng chung ===== */
+.card{border:1.5px solid var(--line);border-radius:16px;background:#fff;padding:16px}
+.card-strong{border:2.5px solid var(--primary);border-radius:16px;background:#fff;padding:16px}
+.rb{width:26px;height:26px;border-radius:50%;border:2.5px solid #64748B;background:#fff;display:flex;align-items:center;justify-content:center;flex:0 0 26px}
+.rb.on{border-color:var(--primary)}
+.rb .dot{width:12px;height:12px;border-radius:50%;background:var(--primary);display:block}
+.cb{width:26px;height:26px;border-radius:7px;border:2.5px solid #64748B;background:#fff;display:flex;align-items:center;justify-content:center;flex:0 0 26px;color:#fff}
+.cb.on{background:var(--primary);border-color:var(--primary)}
+.tg{width:60px;height:34px;border-radius:17px;background:#94A3B8;padding:3px;display:flex;align-items:center;flex:0 0 60px}
+.tg.on{background:var(--primary);justify-content:flex-end}
+.tg .kn{width:28px;height:28px;border-radius:50%;background:#fff;display:block}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:0 16px;height:40px;border-radius:20px;border:1.5px solid var(--line);background:#fff;font-size:16px;font-weight:600;color:var(--ink)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.pill{display:inline-flex;align-items:center;padding:2px 12px;border-radius:999px;font-size:15px;font-weight:700}
+.pill-new{background:var(--warn-s);color:var(--warn);border:1.5px solid var(--warn-line)}
+.pill-doing{background:#E2E8F0;color:#1E293B;border:1.5px solid #94A3B8}
+.pill-done{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+.pill-ok{background:var(--ok-s);color:var(--ok);border:1.5px solid #86EFAC}
+.pill-bad{background:var(--bad-s);color:var(--bad);border:1.5px solid #FCA5A5}
+.qr{display:block}
+
+/* ===== khách hàng (điện thoại 390x844) ===== */
+.p{width:390px;height:844px;display:flex;flex-direction:column;background:#fff;overflow:hidden;position:relative}
+.p-head{height:68px;display:flex;align-items:center;gap:12px;padding:0 16px;background:var(--primary);color:#fff;flex:0 0 68px}
+.p-head.warn{background:#B45309}
+.p-head .back{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center}
+.p-head .ttl{flex:1}
+.p-head .ttl b{display:block;font-size:21px;line-height:1.2}
+.p-head .ttl span{display:block;font-size:16px;opacity:.92}
+.p-head .logo{width:40px;height:40px;border-radius:12px;background:#fff;color:var(--primary);display:flex;align-items:center;justify-content:center}
+.p-steps{padding:10px 16px 12px;background:var(--primary-s);border-bottom:1px solid #BFE3DD;flex:0 0 auto}
+.p-steps .lbl{font-size:16px;font-weight:700;color:var(--primary-d);margin-bottom:8px;display:flex;justify-content:space-between}
+.p-steps .bar{display:flex;gap:6px}
+.p-steps .bar span{flex:1;height:8px;border-radius:4px;background:#B8DCD6;display:block}
+.p-steps .bar span.on{background:var(--primary)}
+.p-main{flex:1;padding:16px;display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.p-main>*,.k-main>*{flex-shrink:0}
+.p-main>.grow,.k-main>.grow{flex:1}
+.p-foot{padding:12px 16px 20px;display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--line);background:#fff;flex:0 0 auto}
+.p-foot .row{display:flex;gap:10px}
+.p-foot .row .btn{flex:1}
+.p h2{font-size:22px;line-height:1.25}
+.p .lead{font-size:18px;color:var(--muted)}
+
+.trow{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid #E2E8F0;font-size:18px}
+.trow:last-child{border-bottom:0}
+.trow .c1{flex:1}.trow .c2{width:100px;text-align:right}.trow .c3{width:86px;text-align:right}
+.trow.th{background:#E2E8F0;font-weight:700;font-size:16px;color:#1E293B}
+.trow small{font-size:16px;color:var(--muted);font-weight:500}
+.tbl-card{padding:0;overflow:hidden}
+.sum{display:flex;justify-content:space-between;align-items:center;font-size:18px;padding:4px 0}
+.sum.big{font-size:20px;font-weight:700}
+.sum.pay{background:var(--primary-s);border-radius:12px;padding:12px 14px;margin-top:8px;font-size:20px;font-weight:700;color:var(--primary-d)}
+.sum.pay span:last-child{font-size:30px}
+.note{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:var(--info-s);color:#1E3A8A;font-size:16px;font-weight:500}
+.note.warn{background:var(--warn-s);color:var(--warn);border:1.5px solid var(--warn-line)}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #E2E8F0;font-size:18px}
+.kv:last-child{border-bottom:0}
+.kv span:first-child{color:var(--muted)}
+.optrow{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid var(--line);border-radius:14px;font-size:19px;font-weight:600;background:#fff}
+.optrow.sel{border:2.5px solid var(--primary);background:var(--primary-s)}
+.optrow small{font-size:16px;color:var(--muted);font-weight:500}
+.input{border:1.5px solid #94A3B8;border-radius:12px;padding:12px 14px;font-size:18px;color:#64748B;background:#fff}
+
+/* ===== nhân viên (máy tính 1440x900) ===== */
+.s{width:1440px;height:900px;display:flex;background:var(--bg);overflow:hidden}
+.s-side{width:264px;background:#0B3F3B;color:#D5EBE8;display:flex;flex-direction:column;padding:20px 16px;gap:4px;flex:0 0 264px}
+.s-brand{display:flex;align-items:center;gap:12px;padding:4px 8px 16px;color:#fff}
+.s-brand .logo{width:44px;height:44px;border-radius:12px;background:#fff;color:var(--primary);display:flex;align-items:center;justify-content:center}
+.s-brand b{display:block;font-size:18px;line-height:1.2}.s-brand span{display:block;font-size:14px;color:#9FD3CC}
+.s-nav-h{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#8FC5BE;padding:14px 12px 6px;font-weight:700}
+.s-nav-i{display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;font-size:16px;font-weight:600;color:#D5EBE8}
+.s-nav-i.on{background:#fff;color:var(--primary-d)}
+.s-nav-i .badge{margin-left:auto;background:#F59E0B;color:#451A03;border-radius:999px;font-size:14px;font-weight:700;padding:1px 10px}
+.s-side .foot{margin-top:auto;padding:12px;font-size:14px;color:#9FD3CC;border-top:1px solid #1D5C57}
+.s-main{flex:1;display:flex;flex-direction:column;min-width:0}
+.s-top{height:76px;display:flex;align-items:center;gap:20px;padding:0 28px;background:#fff;border-bottom:1px solid var(--line);flex:0 0 76px}
+.s-top h1{font-size:23px;line-height:1.2}
+.s-top .sub{color:var(--muted);font-size:16px;font-weight:500}
+.s-top .sp{flex:1}
+.s-search{width:360px;height:44px;border:1.5px solid #94A3B8;border-radius:10px;display:flex;align-items:center;gap:10px;padding:0 14px;color:var(--muted);font-size:16px}
+.avatar{width:44px;height:44px;border-radius:50%;background:var(--primary);color:#fff;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;flex:0 0 44px}
+.s-body{flex:1;padding:22px 28px 24px;display:flex;flex-direction:column;gap:16px;overflow:hidden}
+.s-cols{display:flex;gap:16px;flex:1;min-height:0}
+.s-col{display:flex;flex-direction:column;gap:16px}
+.s .card{padding:18px 20px}
+.s .card h3{font-size:18px;margin-bottom:12px}
+.s-actions{display:flex;gap:14px;align-items:center}
+.s-actions .sp{flex:1}
+.s-actions .btn{min-height:52px;font-size:17px;padding:0 26px}
+.field{display:flex;align-items:center;gap:12px;font-size:16px;padding:6px 0}
+.field .fk{width:150px;color:var(--muted);flex:0 0 150px}
+.field .v{font-weight:600}
+.sel-box{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1.5px solid #94A3B8;border-radius:10px;padding:8px 14px;font-size:16px;font-weight:600;background:#fff;min-width:150px}
+.inp{flex:1;border:1.5px solid #94A3B8;border-radius:10px;padding:10px 14px;font-size:16px;background:#fff;color:#64748B;min-height:44px;display:flex;align-items:center}
+.inp.filled{color:var(--ink);font-weight:500}
+.area{border:1.5px solid #94A3B8;border-radius:10px;padding:12px 14px;font-size:16px;color:var(--ink);background:#fff;line-height:1.5}
+.line-ph{height:12px;border-radius:6px;background:#E2E8F0;margin-top:10px}
+.stbl{background:#fff;border:1.5px solid var(--line);border-radius:14px;overflow:hidden}
+.srow{display:flex;align-items:center;gap:12px;padding:0 20px;min-height:58px;border-bottom:1px solid #E2E8F0;font-size:16px}
+.srow:last-child{border-bottom:0}
+.srow.th{background:#E2E8F0;font-weight:700;color:#1E293B;min-height:50px;font-size:16px}
+.srow.sum{background:#F8FAFC;font-weight:700}
+.srow.hl{background:#FFFBEB}
+.srow.sel{background:var(--primary-s)}
+.srow .num{width:140px;text-align:right}
+.srow .cell-btn{flex:0 0 auto}
+
+/* ===== kiosk (1080x1920 dọc) ===== */
+.k{width:1080px;height:1920px;display:flex;flex-direction:column;background:#fff;overflow:hidden}
+.k-head{height:176px;background:var(--primary);color:#fff;display:flex;align-items:center;gap:28px;padding:0 56px;flex:0 0 176px}
+.k-head.warn{background:#B45309}
+.k-head .logo{width:92px;height:92px;border-radius:24px;background:#fff;color:var(--primary);display:flex;align-items:center;justify-content:center}
+.k-head h1{font-size:58px;line-height:1.1}
+.k-head small{font-size:30px;opacity:.92}
+.k-head .sp{flex:1}
+.k-head .clock{font-size:44px;font-weight:700}
+.k-main{flex:1;padding:48px 56px;display:flex;flex-direction:column;gap:32px;overflow:hidden}
+.k-foot{padding:28px 56px 44px;display:flex;gap:28px;border-top:2px solid var(--line);flex:0 0 auto}
+.k-foot .kb{flex:1}
+.kb{display:flex;align-items:center;justify-content:center;gap:20px;min-height:128px;border-radius:28px;border:4px solid var(--primary);background:#fff;color:var(--primary);font-size:46px;font-weight:800;text-align:center;padding:0 32px}
+.kb.primary{background:var(--primary);color:#fff}
+.kb.support{border:4px dashed var(--warn-line);background:#FFFBEB;color:var(--warn)}
+.kb.ghost{border-color:#94A3B8;color:var(--ink)}
+.kopt{display:flex;align-items:center;gap:32px;padding:32px 40px;border:3px solid var(--line);border-radius:28px;font-size:46px;font-weight:700;background:#fff}
+.kopt.sel{border:5px solid var(--primary);background:var(--primary-s)}
+.kopt small{font-size:32px;color:var(--muted);font-weight:500;margin-top:6px}
+.kopt .rb{width:56px;height:56px;flex:0 0 56px;border-width:5px}
+.kopt .rb .dot{width:26px;height:26px}
+.k h2{font-size:56px;line-height:1.15}
+.k .lead{font-size:40px;color:var(--muted);font-weight:500}
+
+/* ===== bảng thiết kế (để import Figma) ===== */
+.board{position:relative;background:#EEF2F6}
+.board .b-title{position:absolute;font-weight:800;color:#0F172A}
+.board .b-sub{position:absolute;color:#475569;font-weight:500}
+.board .b-label{position:absolute;font-weight:700;color:#0F172A}
+.board .b-label span{font-weight:500;color:#475569}
+.board .screen{position:absolute;box-shadow:0 0 0 2px #94A3B8}
+.board .b-note{position:absolute;border:3px dashed #B45309;border-radius:18px;background:#FFFBEB;color:#78350F;font-weight:600;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 24px}
+.board .b-end{position:absolute;border:3px solid #0F766E;border-radius:18px;background:#E6F4F1;color:#115E59;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 24px}
+.board svg.arrows{position:absolute;left:0;top:0;pointer-events:none}
+
+@media (min-width:700px){
+ body.pg-p{margin:24px auto;width:390px;box-shadow:0 10px 40px rgba(15,23,42,.2)}
+ body.pg-k{margin:24px auto;width:1080px;box-shadow:0 10px 40px rgba(15,23,42,.2)}
+}
+</style></head><body class="board-page" style="width:5020px;height:4860px"><div class="board" style="width:5020px;height:4860px"><div class="b-title" style="left:80px;top:46px;font-size:84px">Giao diện kiosk bản đồ · K1 → K6</div><div class="b-sub" style="left:80px;top:147px;font-size:42px">Màn hình cảm ứng đặt dọc 1080 × 1920 (24 inch) · mũi tên đen = luồng chính, nét đứt cam = “Cần hỗ trợ”</div><div style="left:80px;top:360px" class="screen k" id="screen-K1" data-screen="K1">
+<div class="k-head"><span class="logo"><svg class="ic" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 5v14M5 12h14"/></svg></span><div><h1>Hướng dẫn đường đi</h1><small>Bệnh viện Đa khoa · Kiosk K-01</small></div><span class="sp"></span><span class="clock">09:12</span></div>
+<div class="k-main" style="align-items:center;text-align:center;gap:28px">
+  <h2 style="font-size:84px;margin-top:20px">Quét mã QR</h2>
+  <div class="lead" style="font-size:52px">trên hóa đơn của bạn</div>
+  <div style="width:520px;height:560px;border:4px solid #94A3B8;border-radius:28px;background:#F8FAFC;display:flex;flex-direction:column;align-items:center;padding:36px 40px;gap:16px;margin-top:8px">
+    <div style="width:100%;height:18px;border-radius:9px;background:#CBD5E1"></div>
+    <div style="width:70%;height:18px;border-radius:9px;background:#E2E8F0;align-self:flex-start"></div>
+    <svg class="qr" width="280" height="280" viewBox="-1 -1 27 27" shape-rendering="crispEdges"><rect x="-1" y="-1" width="27" height="27" fill="#fff"/><path d="M0 0h1v1h-1zM0 1h1v1h-1zM0 2h1v1h-1zM0 3h1v1h-1zM0 4h1v1h-1zM0 5h1v1h-1zM0 6h1v1h-1zM0 8h1v1h-1zM0 10h1v1h-1zM0 12h1v1h-1zM0 16h1v1h-1zM0 18h1v1h-1zM0 19h1v1h-1zM0 20h1v1h-1zM0 21h1v1h-1zM0 22h1v1h-1zM0 23h1v1h-1zM0 24h1v1h-1zM1 0h1v1h-1zM1 6h1v1h-1zM1 9h1v1h-1zM1 13h1v1h-1zM1 14h1v1h-1zM1 15h1v1h-1zM1 16h1v1h-1zM1 18h1v1h-1zM1 24h1v1h-1zM2 0h1v1h-1zM2 2h1v1h-1zM2 3h1v1h-1zM2 4h1v1h-1zM2 6h1v1h-1zM2 8h1v1h-1zM2 10h1v1h-1zM2 13h1v1h-1zM2 14h1v1h-1zM2 18h1v1h-1zM2 20h1v1h-1zM2 21h1v1h-1zM2 22h1v1h-1zM2 24h1v1h-1zM3 0h1v1h-1zM3 2h1v1h-1zM3 3h1v1h-1zM3 4h1v1h-1zM3 6h1v1h-1zM3 9h1v1h-1zM3 14h1v1h-1zM3 15h1v1h-1zM3 18h1v1h-1zM3 20h1v1h-1zM3 21h1v1h-1zM3 22h1v1h-1zM3 24h1v1h-1zM4 0h1v1h-1zM4 2h1v1h-1zM4 3h1v1h-1zM4 4h1v1h-1zM4 6h1v1h-1zM4 8h1v1h-1zM4 9h1v1h-1zM4 12h1v1h-1zM4 13h1v1h-1zM4 15h1v1h-1zM4 18h1v1h-1zM4 20h1v1h-1zM4 21h1v1h-1zM4 22h1v1h-1zM4 24h1v1h-1zM5 0h1v1h-1zM5 6h1v1h-1zM5 8h1v1h-1zM5 10h1v1h-1zM5 11h1v1h-1zM5 15h1v1h-1zM5 18h1v1h-1zM5 24h1v1h-1zM6 0h1v1h-1zM6 1h1v1h-1zM6 2h1v1h-1zM6 3h1v1h-1zM6 4h1v1h-1zM6 5h1v1h-1zM6 6h1v1h-1zM6 8h1v1h-1zM6 9h1v1h-1zM6 10h1v1h-1zM6 11h1v1h-1zM6 15h1v1h-1zM6 16h1v1h-1zM6 18h1v1h-1zM6 19h1v1h-1zM6 20h1v1h-1zM6 21h1v1h-1zM6 22h1v1h-1zM6 23h1v1h-1zM6 24h1v1h-1zM7 8h1v1h-1zM7 11h1v1h-1zM7 13h1v1h-1zM8 0h1v1h-1zM8 3h1v1h-1zM8 5h1v1h-1zM8 10h1v1h-1zM8 13h1v1h-1zM8 14h1v1h-1zM8 15h1v1h-1zM8 18h1v1h-1zM8 19h1v1h-1zM8 24h1v1h-1zM9 1h1v1h-1zM9 3h1v1h-1zM9 6h1v1h-1zM9 7h1v1h-1zM9 9h1v1h-1zM9 10h1v1h-1zM9 12h1v1h-1zM9 13h1v1h-1zM9 14h1v1h-1zM9 15h1v1h-1zM9 16h1v1h-1zM9 18h1v1h-1zM9 19h1v1h-1zM9 20h1v1h-1zM9 21h1v1h-1zM9 22h1v1h-1zM10 1h1v1h-1zM10 2h1v1h-1zM10 5h1v1h-1zM10 6h1v1h-1zM10 7h1v1h-1zM10 8h1v1h-1zM10 9h1v1h-1zM10 14h1v1h-1zM10 15h1v1h-1zM10 21h1v1h-1zM10 22h1v1h-1zM10 24h1v1h-1zM11 0h1v1h-1zM11 1h1v1h-1zM11 2h1v1h-1zM11 7h1v1h-1zM11 11h1v1h-1zM11 13h1v1h-1zM11 14h1v1h-1zM11 17h1v1h-1zM11 18h1v1h-1zM11 19h1v1h-1zM11 21h1v1h-1zM11 24h1v1h-1zM12 4h1v1h-1zM12 7h1v1h-1zM12 8h1v1h-1zM12 12h1v1h-1zM12 13h1v1h-1zM12 14h1v1h-1zM12 15h1v1h-1zM12 16h1v1h-1zM12 21h1v1h-1zM12 22h1v1h-1zM13 2h1v1h-1zM13 3h1v1h-1zM13 4h1v1h-1zM13 5h1v1h-1zM13 6h1v1h-1zM13 8h1v1h-1zM13 9h1v1h-1zM13 10h1v1h-1zM13 11h1v1h-1zM13 14h1v1h-1zM13 16h1v1h-1zM13 18h1v1h-1zM13 20h1v1h-1zM13 24h1v1h-1zM14 0h1v1h-1zM14 1h1v1h-1zM14 2h1v1h-1zM14 4h1v1h-1zM14 5h1v1h-1zM14 6h1v1h-1zM14 7h1v1h-1zM14 9h1v1h-1zM14 18h1v1h-1zM14 22h1v1h-1zM14 23h1v1h-1zM15 2h1v1h-1zM15 3h1v1h-1zM15 4h1v1h-1zM15 6h1v1h-1zM15 10h1v1h-1zM15 11h1v1h-1zM15 13h1v1h-1zM15 14h1v1h-1zM15 21h1v1h-1zM15 24h1v1h-1zM16 2h1v1h-1zM16 3h1v1h-1zM16 5h1v1h-1zM16 7h1v1h-1zM16 8h1v1h-1zM16 10h1v1h-1zM16 14h1v1h-1zM16 16h1v1h-1zM16 18h1v1h-1zM16 20h1v1h-1zM16 21h1v1h-1zM16 22h1v1h-1zM16 24h1v1h-1zM17 9h1v1h-1zM17 10h1v1h-1zM17 11h1v1h-1zM17 12h1v1h-1zM17 13h1v1h-1zM17 17h1v1h-1zM17 18h1v1h-1zM17 19h1v1h-1zM17 21h1v1h-1zM17 22h1v1h-1zM18 0h1v1h-1zM18 1h1v1h-1zM18 2h1v1h-1zM18 3h1v1h-1zM18 4h1v1h-1zM18 5h1v1h-1zM18 6h1v1h-1zM18 8h1v1h-1zM18 10h1v1h-1zM18 15h1v1h-1zM18 19h1v1h-1zM18 23h1v1h-1zM18 24h1v1h-1zM19 0h1v1h-1zM19 6h1v1h-1zM19 8h1v1h-1zM19 10h1v1h-1zM19 13h1v1h-1zM19 14h1v1h-1zM19 15h1v1h-1zM19 20h1v1h-1zM19 22h1v1h-1zM19 23h1v1h-1zM19 24h1v1h-1zM20 0h1v1h-1zM20 2h1v1h-1zM20 3h1v1h-1zM20 4h1v1h-1zM20 6h1v1h-1zM20 10h1v1h-1zM20 12h1v1h-1zM20 13h1v1h-1zM20 14h1v1h-1zM20 15h1v1h-1zM20 17h1v1h-1zM20 21h1v1h-1zM20 22h1v1h-1zM21 0h1v1h-1zM21 2h1v1h-1zM21 3h1v1h-1zM21 4h1v1h-1zM21 6h1v1h-1zM21 8h1v1h-1zM21 9h1v1h-1zM21 10h1v1h-1zM21 14h1v1h-1zM21 15h1v1h-1zM21 16h1v1h-1zM21 17h1v1h-1zM21 19h1v1h-1zM21 20h1v1h-1zM21 22h1v1h-1zM21 23h1v1h-1zM22 0h1v1h-1zM22 2h1v1h-1zM22 3h1v1h-1zM22 4h1v1h-1zM22 6h1v1h-1zM22 8h1v1h-1zM22 9h1v1h-1zM22 12h1v1h-1zM22 15h1v1h-1zM22 17h1v1h-1zM22 21h1v1h-1zM23 0h1v1h-1zM23 6h1v1h-1zM23 8h1v1h-1zM23 9h1v1h-1zM23 10h1v1h-1zM23 14h1v1h-1zM23 16h1v1h-1zM23 18h1v1h-1zM23 20h1v1h-1zM23 21h1v1h-1zM23 22h1v1h-1zM23 24h1v1h-1zM24 0h1v1h-1zM24 1h1v1h-1zM24 2h1v1h-1zM24 3h1v1h-1zM24 4h1v1h-1zM24 5h1v1h-1zM24 6h1v1h-1zM24 8h1v1h-1zM24 10h1v1h-1zM24 12h1v1h-1zM24 13h1v1h-1zM24 15h1v1h-1zM24 21h1v1h-1zM24 22h1v1h-1zM24 23h1v1h-1z" fill="#0F172A"/></svg>
+    <div style="width:100%;height:18px;border-radius:9px;background:#E2E8F0"></div>
+    <div style="width:60%;height:18px;border-radius:9px;background:#E2E8F0;align-self:flex-start"></div>
+  </div>
+  <span style="color:var(--primary)"><svg class="ic" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></span>
+  <div style="width:760px;border:5px dashed #64748B;border-radius:32px;background:#F1F5F9;padding:34px 20px">
+    <div style="font-size:54px;font-weight:800">Vùng quét QR</div>
+    <div style="font-size:34px;color:var(--muted);font-weight:500;margin-top:6px">ở bên dưới màn hình</div>
+  </div>
+  <a class="kb" style="width:760px" href="kiosk/K5_khong-co-ma-qr.html" data-flow="K1 → K5" data-trigger="Tôi không có mã QR">Tôi không có mã QR</a>
+  <a class="demo" style="font-size:30px;min-height:64px;padding:0 32px" href="kiosk/K2_diem-den.html" data-flow="K1 → K2" data-trigger="Quét mã QR thành công">Mô phỏng: quét QR thành công <svg class="ic" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="9 18 15 12 9 6"/></svg></a>
+</div>
+<div class="k-foot"><a class="kb support" href="kiosk/K6_can-ho-tro.html" data-flow="K1 → K6" data-trigger="Cần hỗ trợ"><svg class="ic" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/></svg>Cần hỗ trợ</a><a class="kb ghost" href="#" data-trigger="Đọc to"><svg class="ic" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>Đọc to</a></div></div><div class="b-label" style="left:80px;top:276px;font-size:44px">K1 <span>· Màn hình chờ</span></div><div style="left:1340px;top:360px" class="screen k" id="screen-K2" data-screen="K2">
+<div class="k-head"><span class="logo"><svg class="ic" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 5v14M5 12h14"/></svg></span><div><h1>Bước tiếp theo</h1><small>Bệnh viện Đa khoa · Kiosk K-01</small></div><span class="sp"></span><span class="clock">09:12</span></div>
+<div class="k-main">
+  <div class="card-strong" style="border-width:6px;border-radius:36px;padding:56px 48px;text-align:center">
+    <div style="font-size:40px;color:var(--muted);font-weight:600">Bạn cần đến</div>
+    <div style="font-size:120px;font-weight:800;color:var(--primary-d);line-height:1.1;margin:8px 0">NHÀ THUỐC</div>
+    <div style="font-size:56px;font-weight:800;display:flex;justify-content:center;align-items:center;gap:16px"><svg class="ic" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Tầng 1 · Khu B</div>
+    <div style="font-size:40px;color:var(--muted);margin-top:16px">Mang theo: <b style="color:var(--ink)">đơn thuốc</b></div>
+  </div>
+  <div style="font-size:46px;font-weight:800;margin-top:8px">Chọn đường đi</div>
+  <div class="kopt"><span class="rb"></span><span>Đường ngắn nhất<small>32 m · có bậc thang</small></span></div>
+  <div class="kopt sel"><span class="rb on"><span class="dot"></span></span><span>Đường dễ đi<small>Xe lăn, đi chậm, có điểm nghỉ · 45 m</small></span></div>
+  <div class="grow"></div>
+  <a class="kb primary" style="min-height:150px;font-size:56px" href="kiosk/K3_ban-do-lo-trinh.html" data-flow="K2 → K3" data-trigger="Xem đường đi">Xem đường đi <svg class="ic" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="9 18 15 12 9 6"/></svg></a>
+  <a class="kb ghost" style="min-height:104px;font-size:38px;border-width:3px" href="kiosk/K1_man-hinh-cho.html" data-flow="K2 → K1" data-trigger="Quay lại"><svg class="ic" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="15 18 9 12 15 6"/></svg> Quay lại</a>
+</div>
+<div class="k-foot"><a class="kb support" href="kiosk/K6_can-ho-tro.html" data-flow="K2 → K6" data-trigger="Cần hỗ trợ"><svg class="ic" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/></svg>Cần hỗ trợ</a><a class="kb ghost" href="#" data-trigger="Đọc to"><svg class="ic" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>Đọc to</a></div></div><div class="b-label" style="left:1340px;top:276px;font-size:44px">K2 <span>· Điểm đến</span></div><div style="left:2600px;top:360px" class="screen k" id="screen-K3" data-screen="K3">
+<div class="k-head"><span class="logo"><svg class="ic" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 5v14M5 12h14"/></svg></span><div><h1>Đường đến nhà thuốc</h1><small>Tầng 1 · Khu B</small></div><span class="sp"></span><span class="clock">09:12</span></div>
+<div class="k-main" style="gap:28px">
+  <svg class="map" width="968" height="860" viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg" font-family="Inter,Arial,sans-serif">
+<rect x="0.5" y="0.5" width="359" height="319" rx="14" fill="#F8FAFC" stroke="#CBD5E1"/>
+<rect x="108" y="16" width="64" height="252" fill="#E7EEF4"/>
+<rect x="16" y="236" width="330" height="62" fill="#E7EEF4"/>
+<rect x="16" y="20" width="80" height="64" rx="8" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1.5"/>
+<text x="56" y="57" text-anchor="middle" font-size="13" font-weight="600" fill="#334155">Thang máy</text>
+<rect x="16" y="108" width="80" height="64" rx="8" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1.5"/>
+<text x="56" y="145" text-anchor="middle" font-size="13" font-weight="600" fill="#334155">Thu ngân</text>
+<rect x="186" y="16" width="160" height="208" rx="10" fill="#fff" stroke="#64748B" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="198" y="36" font-size="13" font-weight="700" fill="#334155">Khu B</text>
+<rect x="200" y="46" width="132" height="64" rx="8" fill="#0F766E"/>
+<text x="266" y="83" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">NHÀ THUỐC</text>
+<rect x="200" y="130" width="62" height="56" rx="8" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1.5"/>
+<text x="231" y="163" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Vệ sinh</text>
+<rect x="272" y="130" width="60" height="56" rx="8" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1.5"/>
+<text x="302" y="163" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Lối ra</text>
+<path d="M48 266 H140 V78 H172" fill="none" stroke="#0F766E" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 11"/>
+<polygon points="170,66 190,78 170,90" fill="#0F766E"/>
+<rect x="76" y="254" width="48" height="24" rx="12" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/><text x="100" y="271" text-anchor="middle" font-size="13" font-weight="700" fill="#78350F">Nghỉ</text><rect x="116" y="148" width="48" height="24" rx="12" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/><text x="140" y="165" text-anchor="middle" font-size="13" font-weight="700" fill="#78350F">Nghỉ</text>
+<circle cx="48" cy="266" r="20" fill="#1D4ED8" fill-opacity="0.18"/>
+<circle cx="48" cy="266" r="10" fill="#1D4ED8" stroke="#fff" stroke-width="3"/>
+<text x="30" y="292" font-size="13" font-weight="700" fill="#1E3A8A">Bạn đang ở đây</text>
+</svg>
+  <div style="display:flex;justify-content:space-between;align-items:center;font-size:42px;font-weight:800"><span>Tổng 45 m · 2 điểm nghỉ</span>
+    <span style="display:flex;gap:24px;font-size:32px;font-weight:600"><span style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border-radius:50%;background:#1D4ED8;display:block"></span>Bạn ở đây</span><span style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border-radius:7px;background:#FEF3C7;border:3px solid #B45309;display:block"></span>Điểm nghỉ</span></span></div>
+  <div style="display:flex;flex-direction:column;gap:22px"><div style="display:flex;align-items:center;gap:24px;font-size:42px;font-weight:700"><span style="width:60px;height:60px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:36px;flex:0 0 60px">1</span>Đi thẳng 20 m</div><div style="display:flex;align-items:center;gap:24px;font-size:42px;font-weight:700"><span style="width:60px;height:60px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:36px;flex:0 0 60px">2</span>Rẽ phải, vào Khu B</div><div style="display:flex;align-items:center;gap:24px;font-size:42px;font-weight:700"><span style="width:60px;height:60px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:36px;flex:0 0 60px">3</span>Nhà thuốc ở phía trước</div></div>
+  <div class="grow"></div>
+  <div style="display:flex;gap:24px">
+    <a class="kb ghost" style="flex:1;font-size:40px;padding:0 24px" href="kiosk/K2_diem-den.html" data-flow="K3 → K2" data-trigger="Chọn lại"><svg class="ic" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="15 18 9 12 15 6"/></svg> Chọn lại</a>
+    <a class="kb primary" style="flex:2;font-size:40px;padding:0 24px" href="kiosk/K4_mang-duong-di-theo.html" data-flow="K3 → K4" data-trigger="Mang đường đi theo">Mang đường đi theo <svg class="ic" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="9 18 15 12 9 6"/></svg></a>
+  </div>
+</div>
+<div class="k-foot"><a class="kb support" href="kiosk/K6_can-ho-tro.html" data-flow="K3 → K6" data-trigger="Cần hỗ trợ"><svg class="ic" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/></svg>Cần hỗ trợ</a><a class="kb ghost" href="#" data-trigger="Đọc to"><svg class="ic" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>Đọc to</a></div></div><div class="b-label" style="left:2600px;top:276px;font-size:44px">K3 <span>· Bản đồ + lộ trình</span></div><div style="left:3860px;top:360px" class="screen k" id="screen-K4" data-screen="K4">
+<div class="k-head"><span class="logo"><svg class="ic" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 5v14M5 12h14"/></svg></span><div><h1>Mang đường đi theo</h1><small>Bệnh viện Đa khoa · Kiosk K-01</small></div><span class="sp"></span><span class="clock">09:12</span></div>
+<div class="k-main" style="align-items:center;text-align:center;gap:28px">
+  <h2 style="font-size:76px;margin-top:16px">Quét bằng điện thoại</h2>
+  <div style="padding:28px;border:5px solid var(--ink);border-radius:36px;background:#fff"><svg class="qr" width="560" height="560" viewBox="-1 -1 27 27" shape-rendering="crispEdges"><rect x="-1" y="-1" width="27" height="27" fill="#fff"/><path d="M0 0h1v1h-1zM0 1h1v1h-1zM0 2h1v1h-1zM0 3h1v1h-1zM0 4h1v1h-1zM0 5h1v1h-1zM0 6h1v1h-1zM0 8h1v1h-1zM0 9h1v1h-1zM0 11h1v1h-1zM0 12h1v1h-1zM0 15h1v1h-1zM0 18h1v1h-1zM0 19h1v1h-1zM0 20h1v1h-1zM0 21h1v1h-1zM0 22h1v1h-1zM0 23h1v1h-1zM0 24h1v1h-1zM1 0h1v1h-1zM1 6h1v1h-1zM1 8h1v1h-1zM1 9h1v1h-1zM1 11h1v1h-1zM1 13h1v1h-1zM1 16h1v1h-1zM1 18h1v1h-1zM1 24h1v1h-1zM2 0h1v1h-1zM2 2h1v1h-1zM2 3h1v1h-1zM2 4h1v1h-1zM2 6h1v1h-1zM2 8h1v1h-1zM2 10h1v1h-1zM2 12h1v1h-1zM2 13h1v1h-1zM2 14h1v1h-1zM2 15h1v1h-1zM2 16h1v1h-1zM2 18h1v1h-1zM2 20h1v1h-1zM2 21h1v1h-1zM2 22h1v1h-1zM2 24h1v1h-1zM3 0h1v1h-1zM3 2h1v1h-1zM3 3h1v1h-1zM3 4h1v1h-1zM3 6h1v1h-1zM3 12h1v1h-1zM3 13h1v1h-1zM3 14h1v1h-1zM3 15h1v1h-1zM3 18h1v1h-1zM3 20h1v1h-1zM3 21h1v1h-1zM3 22h1v1h-1zM3 24h1v1h-1zM4 0h1v1h-1zM4 2h1v1h-1zM4 3h1v1h-1zM4 4h1v1h-1zM4 6h1v1h-1zM4 8h1v1h-1zM4 9h1v1h-1zM4 11h1v1h-1zM4 12h1v1h-1zM4 14h1v1h-1zM4 16h1v1h-1zM4 18h1v1h-1zM4 20h1v1h-1zM4 21h1v1h-1zM4 22h1v1h-1zM4 24h1v1h-1zM5 0h1v1h-1zM5 6h1v1h-1zM5 10h1v1h-1zM5 12h1v1h-1zM5 16h1v1h-1zM5 18h1v1h-1zM5 24h1v1h-1zM6 0h1v1h-1zM6 1h1v1h-1zM6 2h1v1h-1zM6 3h1v1h-1zM6 4h1v1h-1zM6 5h1v1h-1zM6 6h1v1h-1zM6 8h1v1h-1zM6 9h1v1h-1zM6 11h1v1h-1zM6 13h1v1h-1zM6 15h1v1h-1zM6 16h1v1h-1zM6 18h1v1h-1zM6 19h1v1h-1zM6 20h1v1h-1zM6 21h1v1h-1zM6 22h1v1h-1zM6 23h1v1h-1zM6 24h1v1h-1zM7 8h1v1h-1zM7 9h1v1h-1zM7 10h1v1h-1zM7 11h1v1h-1zM7 12h1v1h-1zM7 15h1v1h-1zM7 16h1v1h-1zM8 0h1v1h-1zM8 1h1v1h-1zM8 3h1v1h-1zM8 4h1v1h-1zM8 6h1v1h-1zM8 8h1v1h-1zM8 9h1v1h-1zM8 11h1v1h-1zM8 13h1v1h-1zM8 16h1v1h-1zM8 18h1v1h-1zM8 19h1v1h-1zM8 21h1v1h-1zM8 23h1v1h-1zM9 1h1v1h-1zM9 3h1v1h-1zM9 4h1v1h-1zM9 6h1v1h-1zM9 7h1v1h-1zM9 9h1v1h-1zM9 10h1v1h-1zM9 11h1v1h-1zM9 17h1v1h-1zM9 19h1v1h-1zM9 23h1v1h-1zM9 24h1v1h-1zM10 1h1v1h-1zM10 6h1v1h-1zM10 7h1v1h-1zM10 9h1v1h-1zM10 11h1v1h-1zM10 13h1v1h-1zM10 15h1v1h-1zM10 16h1v1h-1zM10 17h1v1h-1zM10 20h1v1h-1zM10 24h1v1h-1zM11 0h1v1h-1zM11 3h1v1h-1zM11 4h1v1h-1zM11 5h1v1h-1zM11 6h1v1h-1zM11 8h1v1h-1zM11 9h1v1h-1zM11 11h1v1h-1zM11 12h1v1h-1zM11 15h1v1h-1zM11 22h1v1h-1zM11 23h1v1h-1zM11 24h1v1h-1zM12 0h1v1h-1zM12 1h1v1h-1zM12 2h1v1h-1zM12 5h1v1h-1zM12 9h1v1h-1zM12 10h1v1h-1zM12 13h1v1h-1zM12 18h1v1h-1zM12 19h1v1h-1zM12 20h1v1h-1zM12 24h1v1h-1zM13 2h1v1h-1zM13 3h1v1h-1zM13 4h1v1h-1zM13 6h1v1h-1zM13 7h1v1h-1zM13 13h1v1h-1zM13 18h1v1h-1zM13 19h1v1h-1zM13 20h1v1h-1zM13 23h1v1h-1zM13 24h1v1h-1zM14 1h1v1h-1zM14 2h1v1h-1zM14 5h1v1h-1zM14 6h1v1h-1zM14 11h1v1h-1zM14 13h1v1h-1zM14 14h1v1h-1zM14 15h1v1h-1zM14 16h1v1h-1zM14 17h1v1h-1zM14 19h1v1h-1zM14 20h1v1h-1zM14 21h1v1h-1zM14 23h1v1h-1zM15 1h1v1h-1zM15 2h1v1h-1zM15 3h1v1h-1zM15 6h1v1h-1zM15 13h1v1h-1zM15 17h1v1h-1zM15 19h1v1h-1zM15 24h1v1h-1zM16 1h1v1h-1zM16 3h1v1h-1zM16 8h1v1h-1zM16 9h1v1h-1zM16 12h1v1h-1zM16 13h1v1h-1zM16 14h1v1h-1zM16 15h1v1h-1zM16 16h1v1h-1zM16 17h1v1h-1zM16 19h1v1h-1zM16 24h1v1h-1zM17 9h1v1h-1zM17 10h1v1h-1zM17 13h1v1h-1zM17 15h1v1h-1zM17 18h1v1h-1zM17 20h1v1h-1zM17 22h1v1h-1zM18 0h1v1h-1zM18 1h1v1h-1zM18 2h1v1h-1zM18 3h1v1h-1zM18 4h1v1h-1zM18 5h1v1h-1zM18 6h1v1h-1zM18 10h1v1h-1zM18 17h1v1h-1zM18 21h1v1h-1zM18 22h1v1h-1zM19 0h1v1h-1zM19 6h1v1h-1zM19 11h1v1h-1zM19 15h1v1h-1zM19 16h1v1h-1zM19 18h1v1h-1zM19 19h1v1h-1zM19 20h1v1h-1zM19 21h1v1h-1zM19 22h1v1h-1zM19 23h1v1h-1zM20 0h1v1h-1zM20 2h1v1h-1zM20 3h1v1h-1zM20 4h1v1h-1zM20 6h1v1h-1zM20 11h1v1h-1zM20 12h1v1h-1zM20 16h1v1h-1zM20 18h1v1h-1zM20 19h1v1h-1zM20 20h1v1h-1zM20 22h1v1h-1zM20 23h1v1h-1zM21 0h1v1h-1zM21 2h1v1h-1zM21 3h1v1h-1zM21 4h1v1h-1zM21 6h1v1h-1zM21 8h1v1h-1zM21 9h1v1h-1zM21 10h1v1h-1zM21 11h1v1h-1zM21 13h1v1h-1zM21 14h1v1h-1zM21 15h1v1h-1zM21 18h1v1h-1zM21 23h1v1h-1zM22 0h1v1h-1zM22 2h1v1h-1zM22 3h1v1h-1zM22 4h1v1h-1zM22 6h1v1h-1zM22 8h1v1h-1zM22 9h1v1h-1zM22 10h1v1h-1zM22 13h1v1h-1zM22 14h1v1h-1zM22 16h1v1h-1zM22 18h1v1h-1zM23 0h1v1h-1zM23 6h1v1h-1zM23 8h1v1h-1zM23 10h1v1h-1zM23 11h1v1h-1zM23 12h1v1h-1zM23 13h1v1h-1zM23 14h1v1h-1zM23 15h1v1h-1zM23 16h1v1h-1zM23 17h1v1h-1zM23 19h1v1h-1zM23 22h1v1h-1zM23 24h1v1h-1zM24 0h1v1h-1zM24 1h1v1h-1zM24 2h1v1h-1zM24 3h1v1h-1zM24 4h1v1h-1zM24 5h1v1h-1zM24 6h1v1h-1zM24 10h1v1h-1zM24 12h1v1h-1zM24 13h1v1h-1zM24 14h1v1h-1zM24 15h1v1h-1zM24 16h1v1h-1zM24 21h1v1h-1zM24 22h1v1h-1zM24 24h1v1h-1z" fill="#0F172A"/></svg></div>
+  <div style="font-size:44px;font-weight:700;line-height:1.3">Mở đường đi trên điện thoại<br><span class="muted" style="font-weight:500;font-size:38px">không cần cài ứng dụng</span></div>
+  <div style="display:flex;align-items:center;gap:28px;width:100%;color:var(--muted);font-size:36px"><span style="flex:1;height:3px;background:#CBD5E1;display:block"></span>hoặc<span style="flex:1;height:3px;background:#CBD5E1;display:block"></span></div>
+  <a class="kb" style="width:100%" href="#" data-trigger="In đường đi (nếu kiosk có máy in)"><svg class="ic" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> In đường đi</a>
+  <div style="font-size:32px;color:var(--muted)">(chỉ khi kiosk có máy in)</div>
+  <div class="grow"></div>
+  <a class="kb primary" style="width:100%;min-height:150px;font-size:60px" href="kiosk/K1_man-hinh-cho.html" data-flow="K4 → K1" data-trigger="Xong → quay về K1">Xong</a>
+</div>
+<div class="k-foot"><a class="kb support" href="kiosk/K6_can-ho-tro.html" data-flow="K4 → K6" data-trigger="Cần hỗ trợ"><svg class="ic" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/></svg>Cần hỗ trợ</a><a class="kb ghost" href="#" data-trigger="Đọc to"><svg class="ic" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>Đọc to</a></div></div><div class="b-label" style="left:3860px;top:276px;font-size:44px">K4 <span>· Mang đường đi theo</span></div><div style="left:80px;top:2540px" class="screen k" id="screen-K5" data-screen="K5">
+<div class="k-head"><span class="logo"><svg class="ic" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 5v14M5 12h14"/></svg></span><div><h1>Không có mã QR</h1><small>Bệnh viện Đa khoa · Kiosk K-01</small></div><span class="sp"></span><span class="clock">09:12</span></div>
+<div class="k-main" style="gap:24px">
+  <h2>Chọn nơi bạn muốn đến</h2>
+  <a class="kopt" style="justify-content:center;font-size:50px;padding:26px;border:5px solid var(--primary);background:var(--primary-s)" href="kiosk/K2_diem-den.html" data-flow="K5 → K2" data-trigger="Chọn điểm đến">Nhà thuốc</a><a class="kopt" style="justify-content:center;font-size:50px;padding:26px;" href="kiosk/K2_diem-den.html" data-flow="K5 → K2" data-trigger="Chọn điểm đến (Quầy thu ngân)">Quầy thu ngân</a><a class="kopt" style="justify-content:center;font-size:50px;padding:26px;" href="kiosk/K2_diem-den.html" data-flow="K5 → K2" data-trigger="Chọn điểm đến (Thang máy)">Thang máy</a><a class="kopt" style="justify-content:center;font-size:50px;padding:26px;" href="kiosk/K2_diem-den.html" data-flow="K5 → K2" data-trigger="Chọn điểm đến (Nhà vệ sinh)">Nhà vệ sinh</a><a class="kopt" style="justify-content:center;font-size:50px;padding:26px;" href="kiosk/K2_diem-den.html" data-flow="K5 → K2" data-trigger="Chọn điểm đến (Lối ra)">Lối ra</a>
+  <div style="font-size:40px;font-weight:800;margin-top:8px">Hoặc nhập mã ngắn trên hóa đơn:</div>
+  <div style="display:flex;gap:14px;justify-content:space-between"><span style="width:104px;height:128px;border:4px solid #64748B;border-radius:18px;background:#fff;display:block"></span><span style="width:104px;height:128px;border:4px solid #64748B;border-radius:18px;background:#fff;display:block"></span><span style="width:104px;height:128px;border:4px solid #64748B;border-radius:18px;background:#fff;display:block"></span><span style="width:104px;height:128px;border:4px solid #64748B;border-radius:18px;background:#fff;display:block"></span><span style="width:104px;height:128px;border:4px solid #64748B;border-radius:18px;background:#fff;display:block"></span><span style="width:104px;height:128px;border:4px solid #64748B;border-radius:18px;background:#fff;display:block"></span><span style="width:104px;height:128px;border:4px solid #64748B;border-radius:18px;background:#fff;display:block"></span></div>
+  <div style="font-size:30px;color:var(--muted)">Bàn phím số hiện ra khi chạm.</div>
+  <div class="grow"></div>
+  <a class="kb primary" style="min-height:140px;font-size:54px" href="kiosk/K2_diem-den.html" data-flow="K5 → K2" data-trigger="Xác nhận (nhập mã)">Xác nhận</a>
+</div>
+<div class="k-foot"><a class="kb support" href="kiosk/K6_can-ho-tro.html" data-flow="K5 → K6" data-trigger="Cần hỗ trợ"><svg class="ic" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/></svg>Cần hỗ trợ</a><a class="kb ghost" href="#" data-trigger="Đọc to"><svg class="ic" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>Đọc to</a></div></div><div class="b-label" style="left:80px;top:2456px;font-size:44px">K5 <span>· Không có mã QR</span></div><div style="left:3860px;top:2540px" class="screen k" id="screen-K6" data-screen="K6">
+<div class="k-head warn"><span class="logo"><svg class="ic" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 5v14M5 12h14"/></svg></span><div><h1>Cần hỗ trợ</h1><small>Nhân viên sẽ đến giúp bạn</small></div><span class="sp"></span><span class="clock">09:12</span></div>
+<div class="k-main" style="gap:28px">
+  <h2>Bạn đang gặp vấn đề gì?</h2>
+  <div class="kopt"><span class="rb"></span>Mã QR không quét được</div><div class="kopt"><span class="rb"></span>Không tìm thấy đường</div><div class="kopt sel"><span class="rb on"><span class=dot></span></span>Khó đi, cần người đưa</div><div class="kopt"><span class="rb"></span>Khác</div>
+  <div style="border:3px solid #94A3B8;border-radius:24px;padding:28px 32px;min-height:200px;font-size:38px;color:#64748B;background:#fff">Ghi chú (không bắt buộc)</div>
+  <div class="grow"></div>
+  <a class="kb primary" style="min-height:150px;font-size:58px" href="staff/2.6_yeu-cau-ho-tro.html" data-flow="K6 → 2.6" data-trigger="Gửi yêu cầu → nhân viên hỗ trợ (2.6)">Gửi yêu cầu</a>
+  <div style="text-align:center;font-size:36px;color:var(--muted)">Nhân viên sẽ đến hỗ trợ bạn.</div>
+  <a class="kb ghost" style="min-height:104px;font-size:38px;border-width:3px;align-self:flex-start;padding:0 48px" href="#" onclick="history.back();return false" data-trigger="Quay lại"><svg class="ic" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="15 18 9 12 15 6"/></svg> Quay lại</a>
+</div></div><div class="b-label" style="left:3860px;top:2456px;font-size:44px">K6 <span>· Cần hỗ trợ</span></div><div class="b-note" style="left:2600px;top:3330px;width:1080px;height:340px;font-size:42px">Từ mọi màn hình:<br>bấm “Cần hỗ trợ” → K6</div><div class="b-end" style="left:3860px;top:4630px;width:1080px;height:150px;font-size:40px">→ nhân viên hỗ trợ (2.6)</div><svg class="arrows" width="5020" height="4860" viewBox="0 0 5020 4860" xmlns="http://www.w3.org/2000/svg"><path d="M1160 1320 L1310 1320" fill="none" stroke="#0F172A" stroke-width="6" stroke-linejoin="round"/><polygon points="1340,1320 1310,1336 1310,1304" fill="#0F172A"/><text x="1250.0" y="1254" text-anchor="middle" font-size="38" font-weight="700" fill="#0F172A" font-family="Inter,Arial,sans-serif"><tspan x="1250.0" dy="0">Quét mã QR</tspan><tspan x="1250.0" dy="47">thành công</tspan></text><path d="M2420 1320 L2570 1320" fill="none" stroke="#0F172A" stroke-width="6" stroke-linejoin="round"/><polygon points="2600,1320 2570,1336 2570,1304" fill="#0F172A"/><text x="2510.0" y="1254" text-anchor="middle" font-size="38" font-weight="700" fill="#0F172A" font-family="Inter,Arial,sans-serif"><tspan x="2510.0" dy="0">Xem</tspan><tspan x="2510.0" dy="47">đường đi</tspan></text><path d="M3680 1320 L3830 1320" fill="none" stroke="#0F172A" stroke-width="6" stroke-linejoin="round"/><polygon points="3860,1320 3830,1336 3830,1304" fill="#0F172A"/><text x="3770.0" y="1254" text-anchor="middle" font-size="38" font-weight="700" fill="#0F172A" font-family="Inter,Arial,sans-serif"><tspan x="3770.0" dy="0">Mang đường</tspan><tspan x="3770.0" dy="47">đi theo</tspan></text><path d="M4760 360 L4760 240 L980 240 L980 330" fill="none" stroke="#0F172A" stroke-width="6" stroke-linejoin="round"/><polygon points="980,360 964,330 996,330" fill="#0F172A"/><text x="2870.0" y="216" text-anchor="middle" font-size="40" font-weight="700" fill="#0F172A" font-family="Inter,Arial,sans-serif"><tspan x="2870.0" dy="0">Xong → quay về K1</tspan></text><path d="M980 2280 L980 2510" fill="none" stroke="#0F172A" stroke-width="6" stroke-linejoin="round"/><polygon points="980,2540 964,2510 996,2510" fill="#0F172A"/><text x="1010" y="2410" text-anchor="start" font-size="38" font-weight="700" fill="#0F172A" font-family="Inter,Arial,sans-serif"><tspan x="1010" dy="0">Tôi không</tspan><tspan x="1010" dy="47">có mã QR</tspan></text><path d="M1160 3500 L2240 3500 L2240 2310" fill="none" stroke="#0F172A" stroke-width="6" stroke-linejoin="round"/><polygon points="2240,2280 2256,2310 2224,2310" fill="#0F172A"/><text x="2270" y="2980" text-anchor="start" font-size="38" font-weight="700" fill="#0F172A" font-family="Inter,Arial,sans-serif"><tspan x="2270" dy="0">Chọn điểm đến</tspan><tspan x="2270" dy="47">hoặc nhập mã</tspan></text><path d="M3680 3500 L3830 3500" fill="none" stroke="#B45309" stroke-width="6" stroke-linejoin="round" stroke-dasharray="18 12"/><polygon points="3860,3500 3830,3516 3830,3484" fill="#B45309"/><path d="M4400 4460 L4400 4600" fill="none" stroke="#0F172A" stroke-width="6" stroke-linejoin="round"/><polygon points="4400,4630 4384,4600 4416,4600" fill="#0F172A"/><text x="4430" y="4560" text-anchor="start" font-size="38" font-weight="700" fill="#0F172A" font-family="Inter,Arial,sans-serif"><tspan x="4430" dy="0">Gửi</tspan></text></svg></div></body></html>

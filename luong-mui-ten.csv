@@ -1,0 +1,45 @@
+﻿Từ màn hình,Tên,Bấm vào nút / thao tác,Đến màn hình,Tên
+1.1,Bảng kê chi phí,Đã xem xong,1.2,Biên lai + bước tiếp theo
+1.1,Bảng kê chi phí,Cần hỗ trợ,1.9,Cần hỗ trợ
+1.2,Biên lai + bước tiếp theo,Đưa mã QR trên biên lai vào kiosk,K1,Màn hình chờ
+1.2,Biên lai + bước tiếp theo,Xem đường đi,1.3,Bản đồ + lộ trình
+1.2,Biên lai + bước tiếp theo,Cần hỗ trợ,1.9,Cần hỗ trợ
+1.3,Bản đồ + lộ trình,Chọn lối đi dễ hơn (tùy chọn),1.4,Chọn lối đi phù hợp
+1.3,Bản đồ + lộ trình,Tôi đã đến nhà thuốc (đề xuất thêm),1.5,Số thứ tự + trạng thái đơn
+1.3,Bản đồ + lộ trình,Cần hỗ trợ,1.9,Cần hỗ trợ
+1.4,Chọn lối đi phù hợp,Bắt đầu đi,1.5,Số thứ tự + trạng thái đơn
+1.4,Chọn lối đi phù hợp,Cần hỗ trợ,1.9,Cần hỗ trợ
+1.5,Số thứ tự + trạng thái đơn,Khi đến lượt (nhân viên gọi số 2.3),1.6,Thông báo đến lượt
+1.5,Số thứ tự + trạng thái đơn,Cần hỗ trợ,1.9,Cần hỗ trợ
+1.6,Thông báo đến lượt,Đã biết,1.7,Hướng dẫn từng thuốc
+1.6,Thông báo đến lượt,Cần hỗ trợ,1.9,Cần hỗ trợ
+1.7,Hướng dẫn từng thuốc,Tiếp / Tiếp theo (tùy chọn),1.8,Tra cứu + nhắc thuốc
+1.7,Hướng dẫn từng thuốc,Cần hỗ trợ,1.9,Cần hỗ trợ
+1.8,Tra cứu + nhắc thuốc,Tab Hướng dẫn,1.7,Hướng dẫn từng thuốc
+1.8,Tra cứu + nhắc thuốc,Cần hỗ trợ,1.9,Cần hỗ trợ
+1.9,Cần hỗ trợ,Gửi yêu cầu,2.6,Danh sách yêu cầu hỗ trợ
+2.1,Thu ngân,Xác nhận đã thanh toán,2.2,Tiếp nhận đơn và cấp số
+2.2,Tiếp nhận đơn và cấp số,Tiếp nhận và cấp số,2.3,"Cập nhật trạng thái, gọi số"
+2.3,"Cập nhật trạng thái, gọi số",Gọi số tiếp,2.4,Đối chiếu và cấp phát thuốc
+2.3,"Cập nhật trạng thái, gọi số",Lỡ lượt: chuyển hỗ trợ,2.6,Danh sách yêu cầu hỗ trợ
+2.4,Đối chiếu và cấp phát thuốc,Xác nhận cấp phát,2.5,Dược sĩ xác nhận hướng dẫn
+2.5,Dược sĩ xác nhận hướng dẫn,Xác nhận và hiển thị → người bệnh thấy hướng dẫn (1.7),1.7,Hướng dẫn từng thuốc
+K1,Màn hình chờ,Tôi không có mã QR,K5,Không có mã QR
+K1,Màn hình chờ,Quét mã QR thành công,K2,Điểm đến
+K1,Màn hình chờ,Cần hỗ trợ,K6,Cần hỗ trợ
+K2,Điểm đến,Xem đường đi,K3,Bản đồ + lộ trình
+K2,Điểm đến,Quay lại,K1,Màn hình chờ
+K2,Điểm đến,Cần hỗ trợ,K6,Cần hỗ trợ
+K3,Bản đồ + lộ trình,Chọn lại,K2,Điểm đến
+K3,Bản đồ + lộ trình,Mang đường đi theo,K4,Mang đường đi theo
+K3,Bản đồ + lộ trình,Cần hỗ trợ,K6,Cần hỗ trợ
+K4,Mang đường đi theo,Xong → quay về K1,K1,Màn hình chờ
+K4,Mang đường đi theo,Cần hỗ trợ,K6,Cần hỗ trợ
+K5,Không có mã QR,Chọn điểm đến,K2,Điểm đến
+K5,Không có mã QR,Chọn điểm đến (Quầy thu ngân),K2,Điểm đến
+K5,Không có mã QR,Chọn điểm đến (Thang máy),K2,Điểm đến
+K5,Không có mã QR,Chọn điểm đến (Nhà vệ sinh),K2,Điểm đến
+K5,Không có mã QR,Chọn điểm đến (Lối ra),K2,Điểm đến
+K5,Không có mã QR,Xác nhận (nhập mã),K2,Điểm đến
+K5,Không có mã QR,Cần hỗ trợ,K6,Cần hỗ trợ
+K6,Cần hỗ trợ,Gửi yêu cầu → nhân viên hỗ trợ (2.6),2.6,Danh sách yêu cầu hỗ trợ
